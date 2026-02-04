@@ -93,17 +93,18 @@ A copy of the input table, with additional columns:
 ``` r
 # import without re-interpreting resistance
 pheno <- import_ncbi_ast(ecoli_ast_raw)
+#> Warning: Expected AST method column 'Laboratory typing method' not found in input
 #> Warning: Expected column 'BioProject' not found in input
 head(pheno)
 #> # A tibble: 6 × 28
-#>   id       drug_agent     mic  disk guideline method pheno_provided spp_pheno   
-#>   <chr>    <ab>         <mic> <dsk> <chr>     <chr>  <sir>          <mo>        
-#> 1 SAMN360… CIP        <128.00    NA CLSI      NA       R            B_ESCHR_COLI
-#> 2 SAMN116… CIP         256.00    NA CLSI      NA       R            B_ESCHR_COLI
-#> 3 SAMN057… CIP          64.00    NA CLSI      Etest    R            B_ESCHR_COLI
-#> 4 SAMN106… CIP         >=4.00    NA CLSI      NA       R            B_ESCHR_COLI
-#> 5 SAMN106… CIP         >=4.00    NA CLSI      NA       R            B_ESCHR_COLI
-#> 6 SAMN106… CIP         <=0.25    NA CLSI      NA       S            B_ESCHR_COLI
+#>   id     drug_agent     mic  disk guideline platform pheno_provided spp_pheno   
+#>   <chr>  <ab>         <mic> <dsk> <chr>     <chr>    <sir>          <mo>        
+#> 1 SAMN3… CIP        <128.00    NA CLSI      NA         R            B_ESCHR_COLI
+#> 2 SAMN1… CIP         256.00    NA CLSI      NA         R            B_ESCHR_COLI
+#> 3 SAMN0… CIP          64.00    NA CLSI      Etest      R            B_ESCHR_COLI
+#> 4 SAMN1… CIP         >=4.00    NA CLSI      NA         R            B_ESCHR_COLI
+#> 5 SAMN1… CIP         >=4.00    NA CLSI      NA         R            B_ESCHR_COLI
+#> 6 SAMN1… CIP         <=0.25    NA CLSI      NA         S            B_ESCHR_COLI
 #> # ℹ 20 more variables: `Organism group` <chr>, `Scientific name` <chr>,
 #> #   `Isolation type` <chr>, Location <chr>, `Isolation source` <chr>,
 #> #   Isolate <chr>, Antibiotic <chr>, `Resistance phenotype` <chr>,
