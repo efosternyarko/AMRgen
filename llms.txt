@@ -182,6 +182,8 @@ from public repositories or internal formats.
   : Convert mutation string based on method
 - [`get_binary_matrix()`](https://AMRverse.github.io/AMRgen/reference/get_binary_matrix.md)
   : Get Binary Matrix of Genotype and Phenotype Data
+- [`get_combo_matrix()`](https://AMRverse.github.io/AMRgen/reference/get_combo_matrix.md)
+  : Generate matrix of marker combinations
 - [`as.gene()`](https://AMRverse.github.io/AMRgen/reference/as.gene.md)
   : Gene Class and AMR Parsing Functions
 - [`gtdb.mo()`](https://AMRverse.github.io/AMRgen/reference/gtdb.mo.md)
@@ -189,7 +191,8 @@ from public repositories or internal formats.
 - [`format_ast()`](https://AMRverse.github.io/AMRgen/reference/format_ast.md)
   : Import and Process AST Data from a generic format
 - [`download_ebi()`](https://AMRverse.github.io/AMRgen/reference/download_ebi.md)
-  : Download antimicrobial genotype data from the EBI AMR Portal
+  : Download antimicrobial genotype or phenotype data from the EBI AMR
+  Portal
 
 ## Resistance Interpretation
 
