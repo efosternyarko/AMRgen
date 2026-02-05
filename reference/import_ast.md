@@ -42,15 +42,19 @@ import_ast(
 
 - format:
 
-  A string indicating the format of the data, either "ebi" (default),
-  ebi_web", "ebi_ftp", or "ncbi". This determines whether the data is
-  passed on to the
+  A string indicating the format of the data: "ebi" (default),
+  "ebi_web", "ebi_ftp", "ncbi", "vitek", or "whonet". This determines
+  whether the data is passed on to the
   [`import_ebi_ast()`](https://AMRverse.github.io/AMRgen/reference/import_ebi_ast.md)
   (ebi/ebi_web),
   [`import_ebi_ast_ftp()`](https://AMRverse.github.io/AMRgen/reference/import_ebi_ast_ftp.md)
-  (ebi_ftp), or
+  (ebi_ftp),
   [`import_ncbi_ast()`](https://AMRverse.github.io/AMRgen/reference/import_ncbi_ast.md)
-  function to process.
+  (ncbi),
+  [`import_vitek_ast()`](https://AMRverse.github.io/AMRgen/reference/import_vitek_ast.md)
+  (vitek), or
+  [`import_whonet_ast()`](https://AMRverse.github.io/AMRgen/reference/import_whonet_ast.md)
+  (whonet) function to process.
 
 - interpret_eucast:
 
@@ -117,8 +121,11 @@ A data frame with the processed AST data, including additional columns:
 - `disk`: The disk diffusion measurement (in mm), formatted using the
   `as.disk` function.
 
-- `method`: The AST platform recorded in the input file as the source of
-  the measurement.
+- `method`: The AST method (e.g., "MIC", "disk diffusion", "Etest",
+  "agar dilution").
+
+- `platform`: The AST platform/instrument (e.g., "Vitek", "Phoenix",
+  "Sensititre").
 
 - `guideline`: The AST standard recorded in the input file as being used
   for the AST assay.
