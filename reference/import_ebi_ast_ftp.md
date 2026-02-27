@@ -1,15 +1,15 @@
-# Import and Process AST Data files retrieved from the EBI AMR portal FTP site
+# Import and process antimicrobial phenotype data files retrieved from the EBI AMR portal FTP site
 
 This function will import antibiotic susceptibility testing (AST) data
 suitable for downstream use with AMRgen analysis functions. The expected
-input is phenotype data retrieved from the EBI AMR Portal FTP site
-(ftp://ftp.ebi.ac.uk/pub/databases/amr_portal/releases/) either directly
-or via the function
+input is phenotype data retrieved from the [EBI AMR Portal FTP
+site](ftp://ftp.ebi.ac.uk/pub/databases/amr_portal/releases/) either
+directly or via the function
 [`download_ebi()`](https://AMRverse.github.io/AMRgen/reference/download_ebi.md).
-Note that files downloaded from the EBI AMR Portal web browser
-(https://www.ebi.ac.uk/amr/data/?view=experiments) are formatted
+Note that files downloaded from the [EBI AMR Portal web
+browser](https://www.ebi.ac.uk/amr/data/?view=experiments) are formatted
 differently and can be imported with the function
-[`import_ebi_ast()`](https://AMRverse.github.io/AMRgen/reference/import_ebi_ast.md)
+[`import_ebi_ast()`](https://AMRverse.github.io/AMRgen/reference/import_ebi_ast.md).
 
 ## Usage
 
@@ -60,7 +60,7 @@ A data frame with the processed AST data, including additional columns:
 ``` r
 if (FALSE) { # \dontrun{
 # download Salmonella phenotype data from EBI
-pheno_salmonella <- download_ebi(genus="Salmonella")
+pheno_salmonella <- download_ebi(genus = "Salmonella")
 
 # reformat to simplify use with AMRgen functions
 pheno_salmonella <- import_ebi_ast_ftp(pheno_salmonella)

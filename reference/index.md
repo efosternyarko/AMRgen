@@ -7,22 +7,39 @@ from public repositories or internal formats.
 
 - [`import_amrfp()`](https://AMRverse.github.io/AMRgen/reference/import_amrfp.md)
   : Import and Process AMRFinderPlus Results
+- [`import_amrfp_ebi()`](https://AMRverse.github.io/AMRgen/reference/import_amrfp_ebi.md)
+  : Import EBI-processed AMRFinderPlus Genotypes
+- [`import_amrfp_ebi_ftp()`](https://AMRverse.github.io/AMRgen/reference/import_amrfp_ebi_ftp.md)
+  : Import EBI-processed AMRFinderPlus Genotypes from FTP
+- [`import_amrfp_ebi_web()`](https://AMRverse.github.io/AMRgen/reference/import_amrfp_ebi_web.md)
+  : Import EBI-processed AMRFinderPlus Genotypes from Web
 - [`import_ast()`](https://AMRverse.github.io/AMRgen/reference/import_ast.md)
-  : Import and Process AST Data from an EBI or NCBI antibiogram File
+  : Import and process antimicrobial phenotype data from common sources
 - [`import_ebi_ast()`](https://AMRverse.github.io/AMRgen/reference/import_ebi_ast.md)
-  : Import and Process AST Data from files downloaded from the EBI AMR
-  portal website
+  : Import and process antimicrobial susceptibility phenotype data from
+  the EBI AMR web portal
 - [`import_ebi_ast_ftp()`](https://AMRverse.github.io/AMRgen/reference/import_ebi_ast_ftp.md)
-  : Import and Process AST Data files retrieved from the EBI AMR portal
-  FTP site
+  : Import and process antimicrobial phenotype data files retrieved from
+  the EBI AMR portal FTP site
 - [`import_gtdb()`](https://AMRverse.github.io/AMRgen/reference/import_gtdb.md)
   : Import GTDB Output
+- [`import_microscan_ast()`](https://AMRverse.github.io/AMRgen/reference/import_microscan_ast.md)
+  : Import and process antimicrobial phenotype data exported from
+  MicroScan instruments
 - [`import_ncbi_ast()`](https://AMRverse.github.io/AMRgen/reference/import_ncbi_ast.md)
-  : Import and Process AST Data from an NCBI File
+  : Import and process antimicrobial susceptibility phenotype data from
+  the NCBI AST browser
+- [`import_ncbi_biosample()`](https://AMRverse.github.io/AMRgen/reference/import_ncbi_biosample.md)
+  : Import and process antimicrobial phenotype data retrieved from NCBI
+  BioSamples
+- [`import_sensititre_ast()`](https://AMRverse.github.io/AMRgen/reference/import_sensititre_ast.md)
+  : Import and process antimicrobial phenotype data exported from
+  Sensititre instruments
 - [`import_vitek_ast()`](https://AMRverse.github.io/AMRgen/reference/import_vitek_ast.md)
-  : Import and Process AST Data from Vitek Output Files
+  : Import and process antimicrobial phenotype data exported from Vitek
+  instruments
 - [`import_whonet_ast()`](https://AMRverse.github.io/AMRgen/reference/import_whonet_ast.md)
-  : Import and Process AST Data from WHONET Output Files
+  : Import and process antimicrobial phenotype data from WHONET files
 - [`export_ast()`](https://AMRverse.github.io/AMRgen/reference/export_ast.md)
   : Export AST Data
 - [`export_ebi_antibiogram()`](https://AMRverse.github.io/AMRgen/reference/export_ebi_antibiogram.md)
@@ -33,19 +50,24 @@ from public repositories or internal formats.
   : Convert single-letter amino acid code(s) to three-letter code(s)
 - [`convert_mutation()`](https://AMRverse.github.io/AMRgen/reference/convert_mutation.md)
   : Convert mutation string based on method
+- [`download_ebi()`](https://AMRverse.github.io/AMRgen/reference/download_ebi.md)
+  : Download antimicrobial genotype or phenotype data from the EBI AMR
+  Portal
+- [`download_ncbi_ast()`](https://AMRverse.github.io/AMRgen/reference/download_ncbi_ast.md)
+  : Download NCBI antimicrobial susceptibility testing (AST) data
 - [`get_binary_matrix()`](https://AMRverse.github.io/AMRgen/reference/get_binary_matrix.md)
   : Get Binary Matrix of Genotype and Phenotype Data
 - [`get_combo_matrix()`](https://AMRverse.github.io/AMRgen/reference/get_combo_matrix.md)
-  : Generate matrix of marker combinations
+  : Add marker combinations to a binary geno-pheno matrix
+- [`combo_stats()`](https://AMRverse.github.io/AMRgen/reference/combo_stats.md)
+  : Generate a Series of Plots for AMR Gene and Combination Analysis
 - [`as.gene()`](https://AMRverse.github.io/AMRgen/reference/as.gene.md)
   : Gene Class and AMR Parsing Functions
 - [`gtdb.mo()`](https://AMRverse.github.io/AMRgen/reference/gtdb.mo.md)
   : Get Microorganism from GTDB Species Name
 - [`format_ast()`](https://AMRverse.github.io/AMRgen/reference/format_ast.md)
-  : Import and Process AST Data from a generic format
-- [`download_ebi()`](https://AMRverse.github.io/AMRgen/reference/download_ebi.md)
-  : Download antimicrobial genotype or phenotype data from the EBI AMR
-  Portal
+  : Import and process antimicrobial phenotype data from a generic
+  format
 
 ## Resistance Interpretation
 
@@ -67,15 +89,20 @@ breakpoints and custom models.
 - [`merge_logreg_soloppv()`](https://AMRverse.github.io/AMRgen/reference/merge_logreg_soloppv.md)
   : Merge Logistic Regression and Solo PPV Statistics
 - [`interpret_ast()`](https://AMRverse.github.io/AMRgen/reference/interpret_ast.md)
-  : Interpret AST data in a standard format tibble
+  : Interpret antimicrobial susceptibility phenotype data in a standard
+  format tibble
 
 ## Modelling and analysis
 
 Statistical models for resistance prediction and inference, including
 logistic regression and Firth regression.
 
+- [`amr_upset()`](https://AMRverse.github.io/AMRgen/reference/amr_upset.md)
+  : Generate Upset Plot
 - [`solo_ppv_analysis()`](https://AMRverse.github.io/AMRgen/reference/solo_ppv_analysis.md)
   : Perform Solo PPV Analysis for AMR Markers
+- [`ppv()`](https://AMRverse.github.io/AMRgen/reference/ppv.md) :
+  Generate PPV Plot
 - [`amr_logistic()`](https://AMRverse.github.io/AMRgen/reference/amr_logistic.md)
   : AMR Logistic Regression Analysis
 - [`glm_details()`](https://AMRverse.github.io/AMRgen/reference/glm_details.md)
@@ -86,6 +113,10 @@ logistic regression and Firth regression.
   : Get Clinical Breakpoints for an Antibiotic
 - [`checkBreakpoints()`](https://AMRverse.github.io/AMRgen/reference/checkBreakpoints.md)
   : Check and Retrieve Breakpoints for an Antibiotic
+- [`concordance()`](https://AMRverse.github.io/AMRgen/reference/concordance.md)
+  : Calculate genotype-phenotype concordance from binary matrix
+- [`print(`*`<amr_concordance>`*`)`](https://AMRverse.github.io/AMRgen/reference/print.amr_concordance.md)
+  : Print method for amr_concordance objects
 
 ## Visualisation & Reporting
 
@@ -98,8 +129,6 @@ and genotype-phenotype relationships.
   : Plot Estimates from a Table of Results
 - [`plot_solo_logReg()`](https://AMRverse.github.io/AMRgen/reference/plot_solo_logReg.md)
   : Plot Combined Statistics of Logistic Regression and Solo PPV
-- [`amr_upset()`](https://AMRverse.github.io/AMRgen/reference/amr_upset.md)
-  : Generate a Series of Plots for AMR Gene and Combination Analysis
 - [`assay_by_var()`](https://AMRverse.github.io/AMRgen/reference/assay_by_var.md)
   : Generate a Stacked Bar Plot of Assay Values Colored by a Variable
 
