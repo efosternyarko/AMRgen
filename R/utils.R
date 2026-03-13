@@ -220,7 +220,27 @@ utils::globalVariables(c(
   "estimate",
   "I.denom",
   "NWT.denom",
-  "R.denom"
+  "R.denom",
+  "amr_method",
+  "bioproject_acc",
+  "biosample_acc",
+  "disk_diffusion",
+  "element_symbol",
+  "hierarchy_node",
+  "phenotype",
+  "reagent",
+  "scientific_name",
+  "standard",
+  ".data",
+  "subclass_to_parse",
+  "amrfp_drugs_table",
+  "drug_class_internal",
+  "drug_class_from_agent",
+  "Kleborate_Class",
+  "kleborate_classes",
+  "strain",
+  ".row_id",
+  "sir_interp"
 ))
 
 

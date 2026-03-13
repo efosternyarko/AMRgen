@@ -86,6 +86,8 @@ assay_by_var <- function(pheno_table, antibiotic = NULL, measure = "mic",
       if (nrow(pheno_table) == 0) {
         stop(paste0("Antibiotic '", antibiotic, "' not found in drug_agent column"))
       }
+    } else {
+      cat(paste0("WARNING: Column 'drug_agent' not found in phenotype table, so can't input matrix to specified antibiotic.\nEnsure your input table is already filtered to the antibiotic.\n"))
     }
   }
 

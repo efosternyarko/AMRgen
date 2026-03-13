@@ -22,7 +22,9 @@
 #' @importFrom rvest html_attrs html_children html_element html_text2 read_html
 #' @export
 #' @examples
+#' \dontrun{
 #' eucast_supported_ab_distributions()
+#' }
 eucast_supported_ab_distributions <- function(...) {
   if (is.null(AMRgen_env$eucast_ab_select_list)) {
     if (interactive()) message("Retrieving list of antimicrobials from ", font_url("https://mic.eucast.org", "mic.eucast.org"), "...", appendLF = FALSE)
@@ -78,6 +80,7 @@ eucast_supported_ab_distributions <- function(...) {
 #' @rdname get_eucast_amr_distribution
 #' @export
 #' @examples
+#' \dontrun{
 #' get_eucast_mic_distribution("cipro")
 #'
 #' # not returning as frequency table
@@ -102,6 +105,7 @@ eucast_supported_ab_distributions <- function(...) {
 #' comparison <- compare_mic_with_eucast(my_mic_values, ab = "cipro", mo = "K. pneumoniae")
 #' comparison
 #' ggplot2::autoplot(comparison)
+#' }
 get_eucast_amr_distribution <- function(ab, mo = NULL, method = "MIC", as_freq_table = TRUE) {
   # retrieve available antimicrobials online
   eucast_supported_ab_distributions(invisible = TRUE)

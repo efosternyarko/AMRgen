@@ -19,7 +19,7 @@
 #' This function imports and processes AMRFinderPlus results, extracting antimicrobial resistance (AMR) elements and mapping them to standardised antibiotic names and drug classes. The function also converts gene symbols to a harmonised format and ensures compatibility with the AMR package.
 #' @param input_table A character string specifying a dataframe or path to the AMRFinderPlus results table (TSV format).
 #' @param sample_col A character string specifying the column that identifies samples in the dataset (default `Name`).
-#' @param amrfp_drugs A tibble containing a reference table mapping AMRFinderPlus subclasses (`AFP_Subclass`) to standardised drug agents (`drug_agent`) and drug classes (`drug_class`). Defaults to `amrfp_drugs_table`, which is provided internally.
+#' @param amrfp_drugs A tibble containing a reference table mapping AMRFinderPlus subclasses (`AMRFP_Subclass`) to standardised drug classes (`drug_class`). Defaults to `amrfp_drugs_table`, which is provided internally.
 #' @param element_symbol_col Optional character string specifying the column containing gene or element symbols if non-standard column names are used.
 #' @param element_type_col Optional character string specifying the column indicating element type (e.g. AMR).
 #' @param element_subtype_col Character string specifying the column used to detect mutation subtypes.
@@ -27,7 +27,7 @@
 #' @param node_col Character string specifying the hierarchy node column.
 #' @param subclass_col Character string specifying the AMRFinderPlus subclass column.
 #' @param class_col Character string specifying the AMRFinderPlus class column.
-#' @importFrom AMR as.ab
+#' @importFrom AMR as.ab ab_group
 #' @importFrom dplyr all_of everything filter left_join mutate select case_when if_else relocate any_of
 #' @importFrom tibble tibble add_column
 #' @importFrom tidyr separate_longer_delim separate
@@ -41,7 +41,7 @@
 #' - Filters the data to only include AMR elements.
 #' - Converts gene symbols to a harmonised format.
 #' - Splits multiple subclass annotations into separate rows.
-#' - Maps AMRFinderPlus subclasses to standardised drug agent and drug class names using `amrfp_drugs`.
+#' - Maps AMRFinderPlus subclasses to standardised drug class names using `amrfp_drugs`.
 #' - Converts drug agent names to the `"ab"` class from the AMR package.
 #' This processing ensures compatibility with downstream AMR analysis workflows.
 #' @export
@@ -172,13 +172,22 @@ import_amrfp <- function(input_table,
   }
 
   # make two new columns - drug_class and drug_agent, where we control the vocab for the AMRFinderPlus Subclass column
-  # into something that is comparable with the drugs in the AMR package
-  in_table_ab <- in_table_label %>%
-    left_join(amrfp_drugs[, c("AFP_Subclass", "drug_agent", "drug_class")], by = setNames("AFP_Subclass", subclass_col)) %>%
-    dplyr::relocate(any_of(c(sample_col, "gene", "mutation", "node", "marker", "marker.label", "drug_agent", "drug_class")), .before = dplyr::everything())
+  # into something that is comparable with the drugs and groups in the AMR package
 
-  # convert drug_agent into the "ab" class (will leave NAs as is)
-  in_table_ab <- in_table_ab %>% mutate(drug_agent = as.ab(drug_agent))
+  # first, identify any subclasses we _know_ aren't in the AMR package, using the internal data
+  # join introduces these as new drug_class column
+  in_table_ab <- in_table_label %>%
+    left_join(amrfp_drugs, by = setNames("AMRFP_Subclass", subclass_col)) %>%
+    rename(drug_class_internal = drug_class)
+
+  # then for the columns which are NA, we want to use the Subclass col and convert to ab using AMR pkg
+  in_table_ab <- in_table_ab %>%
+    mutate(subclass_to_parse = if_else(!is.na(drug_class_internal), NA, !!sym(subclass_col))) %>% # create clean vector of only those subclasses we want to parse with AMR pkg functions
+    mutate(drug_agent = AMR::as.ab(subclass_to_parse)) %>%
+    mutate(drug_class_from_agent = AMR::ab_group(subclass_to_parse)) %>%
+    mutate(drug_class = coalesce(drug_class_internal, drug_class_from_agent)) %>%
+    select(-drug_class_from_agent, -drug_class_internal) %>%
+    dplyr::relocate(any_of(c(sample_col, "gene", "mutation", "drug_agent", "drug_class", "variation type", "node", "marker", "marker.label")), .before = dplyr::everything())
 
   return(in_table_ab)
 }
@@ -213,7 +222,8 @@ import_amrfp <- function(input_table,
 #' ebi_geno <- import_amrfp_ebi_ftp(ebi_geno_raw)
 #' }
 import_amrfp_ebi_ftp <- function(input_table) {
-  input_table <- process_input(input_table)
+  input_table <- process_input(input_table) %>%
+    rename(id2 = id) # to avoid clash when creating id from BioSample_ID via import_amrfp
 
   input_table <- import_amrfp(input_table,
     sample_col = "BioSample_ID",
